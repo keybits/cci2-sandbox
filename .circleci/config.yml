@@ -15,7 +15,7 @@ jobs:
           # Must be an absolute path, or relative path from working_directory
           root: workspace
           # Must be relative path from root
-          paths:
+          path:
             - echo-output
 
   downstream:
