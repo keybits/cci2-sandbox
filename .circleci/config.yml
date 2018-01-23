@@ -1,43 +1,8 @@
-defaults: &defaults
-  working_directory: /tmp
-  docker:
-    - image: buildpack-deps:jessie
-
 version: 2
 jobs:
-  flow:
-    <<: *defaults
-    steps:
-      - run: mkdir -p workspace
-      - run: echo "Hello, world!" > workspace/echo-output
-
-      - persist_to_workspace:
-          # Must be an absolute path, or relative path from working_directory
-          root: workspace
-          # Must be relative path from root
-          path:
-            - echo-output
-
-  downstream:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: /tmp/workspace
-
-      - run: |
-          if [[ `cat /tmp/workspace/echo-output` == "Hello, world!" ]]; then
-            echo "It worked!";
-          else
-            echo "Nope!"; exit 1
-          fi
-
-workflows:
-  version: 2
-
-  btd:
-    jobs:
-      - flow
-      - downstream:
-          requires:
-            - flow
+   build:
+     docker:
+       - image: circleci/python:2.7
+     steps:
+       - checkout
+       - run: echo "hello world"
