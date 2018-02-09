@@ -39,9 +39,9 @@ workflows:
   btd:
     jobs:
       - flow:
-        filters:
-          tags:
-            ignore: /^testing-.*/
+          filters:
+            tags:
+              ignore: /^testing-.*/
       - downstream:
           requires:
             - flow
