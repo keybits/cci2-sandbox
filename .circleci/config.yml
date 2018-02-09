@@ -15,7 +15,7 @@ jobs:
           # Must be an absolute path, or relative path from working_directory
           root: workspace
           # Must be relative path from root
-          path:
+          paths:
             - echo-output
 
   downstream:
@@ -38,10 +38,10 @@ workflows:
 
   btd:
     jobs:
-      - flow
+      - flow:
         filters:
           tags:
-            ignore: /^testing-.*/      
+            ignore: /^testing-.*/
       - downstream:
           requires:
             - flow
