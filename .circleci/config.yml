@@ -1,3 +1,4 @@
+---
 defaults: &defaults
   working_directory: /tmp
   docker:
