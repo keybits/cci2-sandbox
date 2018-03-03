@@ -1,17 +1,17 @@
 defaults: &defaults
   working_directory: /tmp
   docker:
-    - image: buildpack-deps:jessie
+  - image: buildpack-deps:jessie
 
 version: 2
 jobs:
   flow:
     <<: *defaults
     steps:
-      - run: mkdir -p workspace
-      - run: echo "Hello, world!" > workspace/echo-output
+    - run: mkdir -p workspace
+    - run: echo "Hello, world!" > workspace/echo-output
 
-      - persist_to_workspace:
+    - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory
           root: workspace
           # Must be relative path from root
@@ -21,12 +21,12 @@ jobs:
   downstream:
     <<: *defaults
     steps:
-#     - comment here    
-      - attach_workspace:
+#   - comment here    
+    - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: /tmp/workspace
 
-      - run: |
+    - run: |
           if [[ `cat /tmp/workspace/echo-output` == "Hello, world!" ]]; then
             echo "It worked!";
           else
