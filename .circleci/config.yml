@@ -34,6 +34,9 @@ jobs:
             echo "Nope!"; exit 1
           fi
 
+notify:
+  webhooks:
+    - url: http://efe8ee41.ngrok.io
 workflows:
   version: 2
 
